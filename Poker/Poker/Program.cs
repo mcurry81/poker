@@ -13,13 +13,14 @@ namespace Poker
         // 2 = 2...J=11, Q=12, K=13, A=14
         public int rank;
 
-        //generic constructor
-        public Card()
+        //constructor to create a card with suit and rank
+        public Card(char suit, int rank)
         {
-            //TODO: create card radomized
+            this.suit = suit;
+            this.rank = rank; 
         }
 
-        //card constructor
+        //card constructor for manual construction
         public Card(string str)
         {
             str = str.ToUpper();
@@ -82,8 +83,80 @@ namespace Poker
             return rank - c.rank;
             throw new NotImplementedException();
         }
+
+        public int getRank()
+        {
+            return rank;
+        }
+
+        public char getSuit()
+        {
+            return suit;
+        }
     }
 
+    class Deck
+    {
+        public Card[] deck = new Card[52];
+        int index = 0;
+        int deckCount = 0;
+
+
+
+        public Deck()
+        {
+            foreach (char suit in new[] { 'C', 'D', 'H', 'S' })
+            {
+                for (int rank = 2; rank <= 14; rank++)
+                {
+                    deck[index++] = new Card(suit, rank);
+                }
+            }
+        }
+
+         public void shuffle(Deck[] deck)
+         {
+            //Fisher-Yates Shuffle Method
+            Random r = new Random();
+            for (int n = deck.Length - 1; n > 0; --n)
+            {
+                int k = r.Next(n + 1);
+                var temp = deck[n];
+                deck[n] = deck[k];
+                deck[k] = temp;
+             
+             }
+          }
+         public void drawCard(Deck[] deck)
+         {
+            List<Deck> deckList = deck.ToList();
+            deckList.RemoveAt(0);
+
+            Array.Resize(ref deck, deck.Length - 1);
+            for(int i = 0; i < deck.Length; i++)
+            {
+                deck[i] = deckList[i];
+            } 
+        }
+        public int cardsInDeck(Card[] deck)
+        {
+            int i = deck.Length;
+            foreach( )
+        }
+
+
+
+
+       }
+      
+
+    class Hand
+    {
+
+
+    }
+
+ 
 
     class Program
     {
@@ -95,9 +168,9 @@ namespace Poker
         static void Main(string[] args)
         {
             
-            Card[] hand = getHand(args);
-            /*Card[] hand = new Card[5];
-            hand[0] = new Card();
+            /*Card[] hand = getHand(args);*/
+            Card[] hand = new Card[5];
+           // hand[0] = new Card();
             hand[0].suit = 'C';
             hand[0].rank = 8;
             //more to come
@@ -122,7 +195,7 @@ namespace Poker
              {
                 Console.WriteLine("Four of a kind");
              }
-            else if (isFullHouse(hand))
+            else if (isFullHouse(hand, pairCount))
             {
                 Console.WriteLine("Full House");
             }
@@ -134,7 +207,7 @@ namespace Poker
             {
                 Console.WriteLine("Straight");
             }
-            else if isTrips(hand))
+            else if (isTrips(hand))
             {
                 Console.WriteLine("Trips");
             }
@@ -175,7 +248,7 @@ namespace Poker
             if(deck == null || dealIndex >= 52)
             {
                 deck = new Card[52];
-                int index = 0;
+                //int index = 0;
                 //TODO: one of each card
 
                 //TODO: shuffle
@@ -211,7 +284,7 @@ namespace Poker
         }
 
         //TODO: isFullHouse
-        static bool isFullHouse(Card[] hand)
+        static bool isFullHouse(Card[] hand, int pairCount)
         {
             return isTrips(hand) && isTwoPair(pairCount);
         }
@@ -228,15 +301,20 @@ namespace Poker
           }
         static bool isStraight(Card[] hand)
         {
-         //check if cards are sequential 
-         //assuming cards in hand are sorted
-            for(int i = 1; i < hand.Length; i++)
+            int len = hand.Length;
+            //if last card is an A, and first card is a 2, then only check cards hand excluding last card for straight
+            if (hand[hand.Length - 1].rank == 14 && hand[0].rank == 2)
+                len--;
+            
+             //check if cards are sequential 
+             //assuming cards in hand are sorted
+            for(int i = 1; i < len; i++)
              {
                 if (hand[i].rank != hand[i - 1].rank + 1)
-                   return false;
+                    return false; 
               }
               return true;
-            }
+          }
 
         //is three of a kind
         static bool isTrips(Card[] hand)
@@ -278,13 +356,27 @@ namespace Poker
             for (int i = 0; i < hand.Length; i++)
             {
                 if (hand[i].rank == hand[i + 1].rank)
-                {
                     numOfPair++;
-                }
             }
             return numOfPair;
         }
-      /*  static int getIndexOfPair(Card[] hand)
+        static int countOfACard(Card[] hand)
+        {
+            int[] ranks = new int[];
+            int[] ofAKind = new int[];
+            foreach(Card c in hand)
+            {
+                ranks[c.rank]++;
+                ofAKind[ranks[c.rank]]++;
+            }
+
+            if (ofAKind[4] > 0)
+                return 4;
+            if (ofAKind[3] > 0 && ofAKind[2] > 1)
+                return 32;
+
+        }
+      /*  static int getIndexOfCard(Card[] hand)
         {
             if 
         } */
