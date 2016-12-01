@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Poker
 {
-    class Card : IComparable
+    public class Card
     {
         // S, H, D, or C
         public char suit;

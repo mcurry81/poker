@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Poker
 {
-    class Deck
+    public class Deck
     {
-        zpublic Card[] deck = new Card[52];
+        public Card[] deck = new Card[52];
         int index = 0;
-        int deckCount = 0;
+        public int deckCount = 0;
 
         public Deck()
         {

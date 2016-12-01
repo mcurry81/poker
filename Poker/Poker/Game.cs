@@ -6,23 +6,25 @@ using System.Threading.Tasks;
 
 namespace Poker
 {
-    class Game
+    public class Game
     {
         public Player player;
         public Deck currentDeck = new Deck();
-        public Player house = new Player();
+        public Player house = new Player("House");
         protected int minCardsNeeded = 10;
         protected int numCardsToDeal = 5;
 
         public Game(Player player)
         {
             this.player = player;
+            player.hand = new Card[numCardsToDeal];
+            house.hand = new Card[numCardsToDeal];
         }
 
         //Begins a new game and returns the winner
-        public Game StartGame()
+        public Game PlayGame()
         {
-            if (currentDeck.count < minCardsNeeded)
+            if (currentDeck.deckCount < minCardsNeeded)
             {
                 currentDeck = new Poker.Deck();
             }
