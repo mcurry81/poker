@@ -5,3 +5,6 @@ C:\repos\poker\Poker\Poker\bin\Debug\Poker.exe
 C:\repos\poker\Poker\Poker\bin\Debug\Poker.pdb
 C:\repos\poker\Poker\Poker\obj\Debug\Poker.exe
 C:\repos\poker\Poker\Poker\obj\Debug\Poker.pdb
+C:\Repos\poker-1\Poker\Poker\bin\Debug\Poker.exe.config
+C:\Repos\poker-1\Poker\Poker\obj\Debug\Poker.exe
+C:\Repos\poker-1\Poker\Poker\obj\Debug\Poker.pdb
