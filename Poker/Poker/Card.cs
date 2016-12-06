@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Poker
 {
+    /// <summary>
+    /// Suit of Card
+    /// </summary>
     enum SUIT
     {
         Clubs,
@@ -14,6 +17,9 @@ namespace Poker
         Spaids
     }
 
+    /// <summary>
+    /// Rank of Card
+    /// </summary>
     enum RANK
     {
         Two = 2,
@@ -30,6 +36,8 @@ namespace Poker
         King,
         Ace     //this value could be a one as well if it is in a A-5 straight
     }
+
+
     /*
      * TODO: Delete this enum if we decide to not use this. 
      * Odds of getting each hand are commented next to each hand
@@ -62,6 +70,39 @@ namespace Poker
         {
             this._suit = suit;
             this._rank = rank;
+        }
+
+        public RANK rank
+        {
+            get
+            {
+                return _rank;
+            }
+        }
+
+        public SUIT suit
+        {
+            get
+            {
+                return _suit;
+            }
+        }
+
+        public override string ToString()
+        {
+            return this._rank + " of " + this._suit;
+        }
+
+        public int CompareTo(object obj)
+        {
+            Card c = obj as Card;
+            return _rank - c.rank;
+            throw new NotImplementedException();
+        }
+
+        public static implicit operator Card(Deck v)
+        {
+            throw new NotImplementedException();
         }
 
         /*
@@ -143,41 +184,6 @@ namespace Poker
 
         }
         */
-
-        public RANK rank
-        {
-            get
-            {
-                return _rank;
-            }
-        }
-
-        public SUIT suit
-        {
-            get
-            {
-                return _suit;
-            }
-        }
-
-        public override string ToString()
-        {
-            return this._rank + " of " + this._suit;
-        }
-
-        public int CompareTo(object obj)
-        {
-            Card c = obj as Card;
-            return _rank - c.rank;
-            throw new NotImplementedException();
-        }
-
-        public static implicit operator Card(Deck v)
-        {
-            throw new NotImplementedException();
-        }
-
-
 
         /*
          * TODO: Old  methods before changed to enums...delete if we stick with enums

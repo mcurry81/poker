@@ -8,11 +8,87 @@ namespace Poker
 {
     class Deck
     {
-        public Card[] cards = new Card[53];
-        int i = 1;
+        public Card[] deck;
+        int currentCard;
         //int cardCount = 0;
 
+        /// <summary>
+        /// Constructor for Deck, creates a Deck object, which consists of an 
+        /// array of 52 Card objects, and assigns each a suit and rank.
+        /// </summary>
         public Deck()
+        {
+            //set currentCard to the first card in deck
+            currentCard = 1;
+            int i = 1;
+            deck = new Card[52];
+            foreach(SUIT s in Enum.GetValues(typeof(SUIT)))
+            {
+                foreach(RANK r in Enum.GetValues(typeof(RANK)))
+                {
+                    deck[i++] = new Card(r, s);
+                }
+            }
+
+        }
+
+        /// <summary>
+        /// Returns the next card in the deck and increments counter to get the 
+        /// next card in deck.
+        /// </summary>
+        /// <returns>deck[currentCard]</returns>
+        public Card dealCard()
+        {
+            return deck[currentCard++];
+        }
+
+
+        /// <summary>
+        /// Shuffle method shuffles the order of the cards using
+        /// the Fisher Yates method and resets the next
+        /// card in deck to the first card. 
+        /// </summary>
+        public void shuffle()
+        {
+            //reset next card in deck to the first card
+            currentCard = 1;
+
+            //Fisher-Yates Shuffle Method
+
+            //random shuffle variable
+            Random r = new Random();
+            for (int n = deck.Length - 1; n > 1; --n)
+            {
+                int k = r.Next(n + 1);
+                var temp = deck[n];
+                deck[n] = deck[k];
+                deck[k] = temp;
+
+            }
+        }
+
+
+        public void printAllCards()
+        {
+            foreach(Card c in deck)
+            {
+                Console.WriteLine(c);
+            }
+        }
+
+        public void printRemainingCards()
+        {
+            for(int i = currentCard; i < deck.Length; i++)
+            {
+                Console.WriteLine(deck[i]);
+            }
+        }
+
+
+        /*
+         * TODO: Constructor and methods below can be removed once we decide to stick with enums
+         * /
+        /*public Deck()
         {
             foreach (char suit in new[] { 'C', 'D', 'H', 'S' })
             {
@@ -36,7 +112,7 @@ namespace Poker
                   }
               }
 
-          }*/
+          }
 
         public void printCards()
         { 

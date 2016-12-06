@@ -20,43 +20,47 @@ namespace Poker
 
             ///to show deck has been properly created. 
             Console.WriteLine("Cards in Deck:");
-            newDeck.printCards();
+            newDeck.printAllCards();
+
+            Console.WriteLine("Cards in Deck After Shuffle:");
+            newDeck.printRemainingCards();
+
 
 
 
 
             //sort hands*/
-            /*   Array.Sort(cards);
-               int pairCount = getPairCount(cards);
+            /*   Array.Sort(hand);
+               int pairCount = getPairCount(hand);
 
 
-               //need helper function to determine what type of cards my cards is
-               if(isRoyalFlush(cards))
+               //need helper function to determine what type of hand my hand is
+               if(isRoyalFlush(hand))
                {
                    Console.WriteLine("Royal Flush");
                }
-               if (isStraightFlush(cards))
+               if (isStraightFlush(hand))
                 {
                     Console.WriteLine("straight flush"); //TODO
                 }
 
-              else if (isFourOfKind(cards))
+              else if (isFourOfKind(hand))
                 {
                    Console.WriteLine("Four of a kind");
                 }
-               else if (isFullHouse(cards, pairCount))
+               else if (isFullHouse(hand, pairCount))
                {
                    Console.WriteLine("Full House");
                }
-               else if (isFlush(cards))
+               else if (isFlush(hand))
                {
                    Console.WriteLine("Flush");
                }
-               else if (isStraight(cards))
+               else if (isStraight(hand))
                {
                    Console.WriteLine("Straight");
                }
-               else if (isTrips(cards))
+               else if (isTrips(hand))
                {
                    Console.WriteLine("Trips");
                }
@@ -70,26 +74,26 @@ namespace Poker
                }
                else
                {
-                   Console.WriteLine(cards[0].rank + " high");
+                   Console.WriteLine(hand[0].rank + " high");
                }
            }
 
            static Card[] getHand(string[] args)
            {
-               Card[] cards = new Card[5];
+               Card[] hand = new Card[5];
                int index = 0;
                foreach(string a in args)
                {
                    if (index >= 5)
                        break;
                    Card c = new Card(a);
-                   cards[index++] = c;
+                   hand[index++] = c;
                }
                while(index < 5)
                {
-                   cards[index++] = deal();
+                   hand[index++] = deal();
                }
-               return cards;
+               return hand;
            }
 
            static Card deal()
@@ -106,23 +110,23 @@ namespace Poker
            }
 
            //is a Royal Flush if it is a straight flush and the first card's rank is a 10
-           static bool isRoyalFlush(Card[] cards)
+           static bool isRoyalFlush(Card[] hand)
            {
-               return (isStraightFlush(cards)) && (cards[0].rank == 10); 
+               return (isStraightFlush(hand)) && (hand[0].rank == 10); 
 
            }
 
            // is a straight flush if is a straight and a flush
-           static bool isStraightFlush(Card[] cards)
+           static bool isStraightFlush(Card[] hand)
            {
-               return isFlush(cards) && isStraight(cards);
+               return isFlush(hand) && isStraight(hand);
            }
 
            //is four of a kind
-           static bool isFourOfKind(Card[] cards)
+           static bool isFourOfKind(Card[] hand)
            {
                int count = 0;
-               while(count < 4 && cards[count].rank == cards[count + 1].rank)
+               while(count < 4 && hand[count].rank == hand[count + 1].rank)
                {
                    count++;
                }
@@ -133,44 +137,44 @@ namespace Poker
            }
 
            //TODO: isFullHouse
-           static bool isFullHouse(Card[] cards, int pairCount)
+           static bool isFullHouse(Card[] hand, int pairCount)
            {
-               return isTrips(cards) && isTwoPair(pairCount);
+               return isTrips(hand) && isTwoPair(pairCount);
            }
 
-           static bool isFlush(Card[] cards)
+           static bool isFlush(Card[] hand)
             {
                 //check if cards 1-4 match the suit of card 0
-                for(int i = 1; i < cards.Length; i++)
+                for(int i = 1; i < hand.Length; i++)
                  {
-                     if (cards[i].suit != cards[0].suit)
+                     if (hand[i].suit != hand[0].suit)
                      return false;
                   }
                  return true;
              }
-           static bool isStraight(Card[] cards)
+           static bool isStraight(Card[] hand)
            {
-               int len = cards.Length;
-               //if last card is an A, and first card is a 2, then only check cards cards excluding last card for straight
-               if (cards[cards.Length - 1].rank == 14 && cards[0].rank == 2)
+               int len = hand.Length;
+               //if last card is an A, and first card is a 2, then only check cards hand excluding last card for straight
+               if (hand[hand.Length - 1].rank == 14 && hand[0].rank == 2)
                    len--;
 
                 //check if cards are sequential 
-                //assuming cards in cards are sorted
+                //assuming cards in hand are sorted
                for(int i = 1; i < len; i++)
                 {
-                   if (cards[i].rank != cards[i - 1].rank + 1)
+                   if (hand[i].rank != hand[i - 1].rank + 1)
                        return false; 
                  }
                  return true;
              }
 
            //is three of a kind
-           static bool isTrips(Card[] cards)
+           static bool isTrips(Card[] hand)
            {
-               for(int i = 0; i < cards.Length - 2; i++)
+               for(int i = 0; i < hand.Length - 2; i++)
                {
-                   if(cards[i].rank == cards[i+ 2].rank)
+                   if(hand[i].rank == hand[i+ 2].rank)
                    {
                        return true;
                    }
@@ -199,21 +203,21 @@ namespace Poker
            }
 
            //get pair count to determine if one pair or two pairs
-            static int getPairCount(Card[] cards)
+            static int getPairCount(Card[] hand)
            {
                int numOfPair = 0;
-               for (int i = 0; i < cards.Length; i++)
+               for (int i = 0; i < hand.Length; i++)
                {
-                   if (cards[i].rank == cards[i + 1].rank)
+                   if (hand[i].rank == hand[i + 1].rank)
                        numOfPair++;
                }
                return numOfPair;
            }
-           static int countOfACard(Card[] cards)
+           static int countOfACard(Card[] hand)
            {
                int[] ranks = new int[];
                int[] ofAKind = new int[];
-               foreach(Card c in cards)
+               foreach(Card c in hand)
                {
                    ranks[c.rank]++;
                    ofAKind[ranks[c.rank]]++;
@@ -225,7 +229,7 @@ namespace Poker
                    return 32;
 
            }
-         /*  static int getIndexOfCard(Card[] cards)
+         /*  static int getIndexOfCard(Card[] hand)
            {
                if 
            } */
