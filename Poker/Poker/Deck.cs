@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Poker
 {
-    class Deck
+    public class Deck
     {
         public Card[] cards = new Card[53];
         int i = 1;
