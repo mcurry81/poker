@@ -6,20 +6,91 @@ using System.Threading.Tasks;
 
 namespace Poker
 {
+    enum SUIT
+    {
+        Clubs,
+        Diamonds,
+        Hearts,
+        Spaids
+    }
+
+    enum RANK
+    {
+        Two = 2,
+        Three,
+        Four,
+        Five,
+        Six,
+        Seven,
+        Eight,
+        Nine,
+        Ten,
+        Jack = 11,
+        Queen,
+        King,
+        Ace     //this value could be a one as well if it is in a A-5 straight
+    }
+    /*
+     * TODO: Delete this enum if we decide to not use this. 
+     * Odds of getting each hand are commented next to each hand
+    enum HANDEVAL
+    {
+        Singles,        //1 in 2
+        Pair,           //1 in 2.36
+        TwoPair,        //1 in 21
+        Trips,          //1 in 47
+        Straight,       //1 in 255
+        Flush,          //1 in 509
+        FullHouse,      //1 in 694
+        FourOfAKind,    //1 in 4165  
+        StraightFlush,  // 1 in 72,192
+        RoyalFlush     //1 in 649740
+    }
+    */
+
+
     class Card : IComparable
     {
-        // S, H, D, or C
-        public char suit;
-        // 2 = 2...J=11, Q=12, K=13, A=14
-        public int rank;
+
+        public RANK _rank;
+        public SUIT _suit;
+
+
 
         //constructor to create a card with suit and rank
-        public Card(char suit, int rank)
+        public Card(RANK rank, SUIT suit)
         {
-            this.suit = suit;
-            this.rank = rank;
+            this._suit = suit;
+            this._rank = rank;
         }
 
+        /*
+         * TODO: Not sure if we'll need this...can delete if not. 
+        /// <summary>
+        /// Creating an indexer for the Card class
+        /// </summary>
+        public Card(): this(RANK.None, SUIT.None)
+        {
+
+        }
+        */
+
+        /*
+        * TODO: Delete this code if enums method works better
+        * Commenting out...going to try to use enums instead
+       // S, H, D, or C
+       // public char suit;
+       // 2 = 2...J=11, Q=12, K=13, A=14
+       //public int rank;
+
+
+           public int rank;
+           public char suit;
+           */
+
+
+        /*
+         * TODO: Delete this constructor, we shouldn't need to manually create cards
         //card constructor for manual construction
         public Card(string str)
         {
@@ -71,27 +142,76 @@ namespace Poker
                 Console.WriteLine("Hey dummy, please enter your suit from " + str);
 
         }
+        */
 
-        bool isValid()
+        public RANK rank
         {
-            return suit != '\0' && rank >= 2 && rank <= 14;
+            get
+            {
+                return _rank;
+            }
+        }
+
+        public SUIT suit
+        {
+            get
+            {
+                return _suit;
+            }
+        }
+
+        public override string ToString()
+        {
+            return this._rank + " of " + this._suit;
         }
 
         public int CompareTo(object obj)
         {
             Card c = obj as Card;
-            return rank - c.rank;
+            return _rank - c.rank;
             throw new NotImplementedException();
         }
 
-        public int getRank()
+        public static implicit operator Card(Deck v)
         {
-            return rank;
+            throw new NotImplementedException();
         }
 
-        public char getSuit()
-        {
-            return suit;
-        }
+
+
+        /*
+         * TODO: Old  methods before changed to enums...delete if we stick with enums
+    public bool isValid()
+    {
+        return suit != '\0' && rank >= 2 && rank <= 14;
+    }
+
+    public int CompareTo(object obj)
+    {
+        Card c = obj as Card;
+        return rank - c.rank;
+        throw new NotImplementedException();
+    }
+
+    public int getRank()
+    {
+        return rank;
+    }
+
+    public char getSuit()
+    {
+        return suit;
+    }
+
+    public void  setSuit(char suit)
+    {
+        this.suit = suit;
+    }
+
+    public void  setRank(int rank)
+    {
+        this.rank = rank;
+    }
+    */
     }
 }
