@@ -8,7 +8,7 @@ namespace Poker
 {
     public class Player
     {
-        public Card[] hand;
+        public Hand hand;
         public string name;
         int score = 0;
 

@@ -11,24 +11,26 @@ namespace Poker
         public Player player;
         public Deck currentDeck = new Deck();
         public Player house = new Player("House");
+        //Minimum number of cards needed to play a full round of the game
         protected int minCardsNeeded = 10;
-        protected int numCardsToDeal = 5;
+        //Max number of cards allowed in the players cards
+        protected int maxCardsInHand = 5;
 
         public Game(Player player)
         {
             this.player = player;
-            player.hand = new Card[numCardsToDeal];
-            house.hand = new Card[numCardsToDeal];
         }
 
         //Begins a new game and returns the winner
-        public Game PlayGame()
+        public Player PlayGame()
         {
+            player.hand = new Hand(maxCardsInHand);
+            house.hand = new Hand(maxCardsInHand);
             if (currentDeck.deckCount < minCardsNeeded)
             {
                 currentDeck = new Poker.Deck();
             }
-            for (int i = 0; i < numCardsToDeal; i++)
+            for (int i = 0; i < maxCardsInHand; i++)
             {
                 currentDeck.dealCard(player);
                 currentDeck.dealCard(house);
