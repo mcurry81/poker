@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Poker
 {
-    public class Card
+    public class Card : IComparable
     {
         // S, H, D, or C
         public char suit;
@@ -23,6 +23,12 @@ namespace Poker
         bool isValid()
         {
             return suit != '\0' && rank >= 2 && rank <= 14;
+        }
+
+        //for IComparable interface so that card array can be sorted
+        public int CompareTo(object obj)
+        {
+            return rank.CompareTo(obj);
         }
     }
 }
