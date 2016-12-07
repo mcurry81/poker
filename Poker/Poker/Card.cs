@@ -9,7 +9,7 @@ namespace Poker
     /// <summary>
     /// Suit of Card
     /// </summary>
-    enum SUIT
+    public enum SUIT
     {
         Clubs,
         Diamonds,
@@ -20,7 +20,7 @@ namespace Poker
     /// <summary>
     /// Rank of Card
     /// </summary>
-    enum RANK
+    public enum RANK
     {
         Two = 2,
         Three,
