@@ -6,10 +6,13 @@ using System.Threading.Tasks;
 
 namespace Poker
 {
-    class Test
+    public class Test
     {
         //test Deck Class
+        //create a test deck
+        Deck testDeck = new Deck(5);
 
+    
         //test printAllCards()
         public void testPrintAll(Deck deck)
         {

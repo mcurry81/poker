@@ -57,7 +57,7 @@ namespace Poker
     */
 
 
-    class Card : IComparable
+    public class Card : IComparable
     {
 
         public RANK _rank;
