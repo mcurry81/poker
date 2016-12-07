@@ -26,14 +26,14 @@ namespace Poker
         {
             player.hand = new Hand(maxCardsInHand);
             house.hand = new Hand(maxCardsInHand);
-            if (currentDeck.deckCount < minCardsNeeded)
+            if (currentDeck.getDeckCount() < minCardsNeeded)
             {
                 currentDeck = new Poker.Deck();
             }
             for (int i = 0; i < maxCardsInHand; i++)
             {
-                currentDeck.dealCard(player);
-                currentDeck.dealCard(house);
+                player.hand.addCard(currentDeck.drawCard());
+                house.hand.addCard(currentDeck.drawCard());
             }
             if (house.hand.getValue() > player.hand.getValue())
                 return house;
