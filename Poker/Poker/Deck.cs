@@ -10,7 +10,7 @@ namespace Poker
     {
         public Card[] deck;
         int currentCard;
-        //int cardCount = 0;
+        int cardCount = 0;
 
         /// <summary>
         /// Constructor for Deck, creates a Deck object, which consists of an 
@@ -27,6 +27,7 @@ namespace Poker
                 foreach(RANK r in Enum.GetValues(typeof(RANK)))
                 {
                     deck[i++] = new Card(r, s);
+                    cardCount++;
                 }
             }
 
@@ -68,9 +69,29 @@ namespace Poker
         /// <returns>deck[currentCard]</returns>
         public Card dealCard()
         {
+            cardCount--;
             return deck[currentCard++];
         }
 
+
+        /// <summary>
+        /// Usign the number of cards needed for a hand, the dealHand method will create an array of Cards
+        /// that will be created from the deck using the dealCard method. Returns the array of Cards.
+        /// </summary>
+        /// <param name="numOfCards"></param>
+        /// <returns>dealtHand</returns>
+        public Hand dealHand(int numOfCards)
+        {
+            Card[] dealtHand = new Card[numOfCards];
+
+            for(int i = 0; i < numOfCards; i++)
+            {
+                dealtHand[i] = this.dealCard();
+            }
+
+            return dealtHand;
+        }
+ 
 
         /// <summary>
         /// Shuffle method shuffles the order of the cards using

@@ -17,7 +17,7 @@ namespace Poker
         //test printAllCards()
         public void testPrintAll(Deck deck)
         {
-            int count = deck.Length();
+            int count = deck.getDeckCount();
             deck.printAllCards();
             Console.WriteLine("printAllCards method completed run...sucessful if " + count + " cards printed.");
         }
@@ -25,9 +25,13 @@ namespace Poker
         //test dealCard()
         public Card testDealCard(Deck deck)
         {
-            testCard = new Poker.Card();
+            //testCard = new Card();
+            Card dealtCard = deck.dealCard();
+            Console.WriteLine(dealtCard);
+            return dealtCard;
 
         }
+
         //test shuffle()
 
 
