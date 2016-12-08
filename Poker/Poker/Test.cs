@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Poker
 {
-    public class Test
+   /* public class Test
     {
         //test Deck Class
         //create a test deck
@@ -36,4 +36,5 @@ namespace Poker
 
         //test getDeckCount()
     }
+    */
 }
