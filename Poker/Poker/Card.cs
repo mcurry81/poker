@@ -20,7 +20,7 @@ namespace Poker
     /// <summary>
     /// Rank of Card
     /// </summary>
-    public enum RANK
+    public ctenum RANK
     {
         Two = 2,
         Three,
