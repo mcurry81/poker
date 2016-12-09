@@ -20,7 +20,7 @@ namespace Poker
         {
             //set currentCard to the first card in deck
             currentCard = 0;
-            int i = 1;
+            //int i = 1;
             deck = new Card[52];
 
             foreach (SUIT s in Enum.GetValues(typeof(SUIT)))
@@ -46,7 +46,7 @@ namespace Poker
         }
 
         /// <summary>
-        /// Indexer to allow deck to be accessed more easily
+        /// Indexer to allow deck to be accessed more easily from each instatiated Deck object
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
@@ -76,24 +76,25 @@ namespace Poker
 
 /*
         /// <summary>
-        /// Usign the number of cards needed for a hand, the dealHand method will create an array of Cards
+        /// Assign the number of cards needed for a hand, the dealHand method will create an array of Cards
         /// that will be created from the deck using the dealCard method. Returns the array of Cards.
         /// </summary>
         /// <param name="numOfCards"></param>
         /// <returns>dealtHand</returns>
         public Hand dealHand(int numOfCards)
         {
-            Card[] dealtHand = new Card[numOfCards];
-
+            //Card[] dealtHand = new Card[numOfCards];
+            Card[] dealtHand;
             for(int i = 0; i < numOfCards; i++)
             {
+                dealtHand[i] = new Card();
                 dealtHand[i] = this.dealCard();
             }
 
-            return dealtHand;
+            return dealtHand[];
         }
- */
-
+ 
+*/
 
         /// <summary>
         /// Shuffle method shuffles the order of the cards using

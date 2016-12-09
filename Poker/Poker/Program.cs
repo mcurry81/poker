@@ -21,7 +21,9 @@ namespace Poker
             Card testCardB;
 
 
-            ///Testing Deck functionality
+            /*
+             * Testing Deck functionality
+             * */
             //test creation of deck
             Console.WriteLine("Testing build of deck...");
             Console.WriteLine("run newDeck()...");
@@ -69,7 +71,27 @@ namespace Poker
             Console.WriteLine(newDeck.getDeckCount());
 
 
-            ///
+
+            /*
+             * Testing Hand functionality
+             * */
+            //creating a hand
+            Hand newHand = new Hand(5);
+            newHand.addCard(testCardA);
+           // Console.WriteLine(newHand.hand[0]);
+
+            //addCard
+            //getHand
+            //getValue
+            //getTieBreak
+            //
+
+             
+             
+
+            /*
+            * testing Game functionality
+            ** /
 
             Console.WriteLine("Press any key to contiue..");
             Console.ReadKey();

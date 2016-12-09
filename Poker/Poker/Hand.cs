@@ -8,7 +8,7 @@ namespace Poker
 {
     public class Hand
     {
-        Card[] hand;
+        public Card[] hand;
         int maxCards;
         HAND_VALUE value;
         int tiebreak = 0;
@@ -33,8 +33,10 @@ namespace Poker
             this.maxCards = maxCards;
         }
 
-        public void addCard(Card card)
+       public void addCard(Card card)
         {
+            Console.WriteLine(maxCards);
+            Console.WriteLine(hand.Length);
             if (hand.Length < maxCards)
             {
                 hand[hand.Length] = card;
@@ -44,6 +46,20 @@ namespace Poker
                 throw new ArgumentException("User already holds max number in hand");
             }
         }
+
+       /* public void addCard(Card card)
+        {
+            int count = 0;
+            if(count < maxCards)
+            {
+                hand[hand.count] = card;
+                count++;
+            }
+            else
+            {
+                throw new ArgumentException("User already holds max number in hand");
+            }
+        }*/
 
         public Card[] getHand()
         {
