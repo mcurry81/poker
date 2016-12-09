@@ -76,6 +76,7 @@ namespace Poker
 
 /*
         /// <summary>
+        ///TODO: delete this function if the Hand class is able to handle this feature/functionality
         /// Assign the number of cards needed for a hand, the dealHand method will create an array of Cards
         /// that will be created from the deck using the dealCard method. Returns the array of Cards.
         /// </summary>

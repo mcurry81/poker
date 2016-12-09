@@ -76,8 +76,8 @@ namespace Poker
              * Testing Hand functionality
              * */
             //creating a hand
-            Hand newHand = new Hand(5);
-            newHand.addCard(testCardA);
+           // Hand newHand = new Hand(5);
+            //newHand.addCard(testCardA);
            // Console.WriteLine(newHand.hand[0]);
 
             //addCard
@@ -86,12 +86,10 @@ namespace Poker
             //getTieBreak
             //
 
-             
-             
 
             /*
             * testing Game functionality
-            ** /
+            **/
 
             Console.WriteLine("Press any key to contiue..");
             Console.ReadKey();
