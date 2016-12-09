@@ -9,33 +9,26 @@ namespace Poker
     public class Deck
     {
         public Card[] deck;
-        int currentCard;
-        int cardCount;
+        public int currentCard;
+        public int cardCount = 0;
 
-        /// <summar
+        /// <summary>
         /// Constructor for Deck, creates a Deck object, which consists of an 
         /// array of 52 Card objects, and assigns each a suit and rank.
         /// </summary>
         public Deck()
         {
             //set currentCard to the first card in deck
-            currentCard = 1;
-            cardCount = 0;
+            currentCard = 0;
             //int i = 1;
             deck = new Card[52];
-            foreach(SUIT s in Enum.GetValues(typeof(SUIT)))
+
+            foreach (SUIT s in Enum.GetValues(typeof(SUIT)))
             {
-                Console.WriteLine();
-                Console.WriteLine("The suit is now: " + s);
-                Console.WriteLine();
                 foreach (RANK r in Enum.GetValues(typeof(RANK)))
                 {
-                   //cardCount++;
-                    deck[++cardCount] = new Card(r, s);
-                    Console.WriteLine("The rank is now :" + r);
-                    Console.WriteLine("...and the cardCount is now " + cardCount);
-
-                    
+                    deck[cardCount++] = new Card(r, s);
+                     
                 }
             }
 
@@ -53,7 +46,7 @@ namespace Poker
         }
 
         /// <summary>
-        /// Indexer to allow deck to be accessed more easily
+        /// Indexer to allow deck to be accessed more easily from each instatiated Deck object
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
@@ -83,23 +76,25 @@ namespace Poker
 
 /*
         /// <summary>
-        /// Usign the number of cards needed for a hand, the dealHand method will create an array of Cards
+        /// Assign the number of cards needed for a hand, the dealHand method will create an array of Cards
         /// that will be created from the deck using the dealCard method. Returns the array of Cards.
         /// </summary>
         /// <param name="numOfCards"></param>
         /// <returns>dealtHand</returns>
         public Hand dealHand(int numOfCards)
         {
-            Card[] dealtHand = new Card[numOfCards];
-
+            //Card[] dealtHand = new Card[numOfCards];
+            Card[] dealtHand;
             for(int i = 0; i < numOfCards; i++)
             {
+                dealtHand[i] = new Card();
                 dealtHand[i] = this.dealCard();
             }
 
             return dealtHand[];
         }
- */
+ 
+*/
 
         /// <summary>
         /// Shuffle method shuffles the order of the cards using
@@ -109,7 +104,7 @@ namespace Poker
         public void shuffle()
         {
             //reset next card in deck to the first card
-            currentCard = 1;
+            currentCard = 0;
 
             //Fisher-Yates Shuffle Method
 
