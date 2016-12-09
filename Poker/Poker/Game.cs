@@ -32,8 +32,8 @@ namespace Poker
             }
             for (int i = 0; i < maxCardsInHand; i++)
             {
-                player.hand.addCard(currentDeck.drawCard());
-                house.hand.addCard(currentDeck.drawCard());
+                player.hand.addCard(currentDeck.dealCard());
+                house.hand.addCard(currentDeck.dealCard());
             }
             if (house.hand.getValue() > player.hand.getValue())
                 return house;

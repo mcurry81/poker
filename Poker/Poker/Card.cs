@@ -22,7 +22,7 @@ namespace Poker
     /// </summary>
     public enum RANK
     {
-        Two = 2,
+        Two=2,
         Three,
         Four,
         Five,
