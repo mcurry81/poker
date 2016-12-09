@@ -9,8 +9,8 @@ namespace Poker
     public class Deck
     {
         public Card[] deck;
-        int currentCard;
-        int cardCount = 0;
+        public int currentCard;
+        public int cardCount = 0;
 
         /// <summary>
         /// Constructor for Deck, creates a Deck object, which consists of an 
@@ -19,15 +19,16 @@ namespace Poker
         public Deck()
         {
             //set currentCard to the first card in deck
-            currentCard = 1;
+            currentCard = 0;
             int i = 1;
             deck = new Card[52];
-            foreach(SUIT s in Enum.GetValues(typeof(SUIT)))
+
+            foreach (SUIT s in Enum.GetValues(typeof(SUIT)))
             {
-                foreach(RANK r in Enum.GetValues(typeof(RANK)))
+                foreach (RANK r in Enum.GetValues(typeof(RANK)))
                 {
-                    deck[i++] = new Card(r, s);
-                    cardCount++;
+                    deck[cardCount++] = new Card(r, s);
+                     
                 }
             }
 
@@ -73,7 +74,7 @@ namespace Poker
             return deck[currentCard++];
         }
 
-
+/*
         /// <summary>
         /// Usign the number of cards needed for a hand, the dealHand method will create an array of Cards
         /// that will be created from the deck using the dealCard method. Returns the array of Cards.
@@ -91,7 +92,8 @@ namespace Poker
 
             return dealtHand;
         }
- 
+ */
+
 
         /// <summary>
         /// Shuffle method shuffles the order of the cards using
@@ -101,7 +103,7 @@ namespace Poker
         public void shuffle()
         {
             //reset next card in deck to the first card
-            currentCard = 1;
+            currentCard = 0;
 
             //Fisher-Yates Shuffle Method
 
