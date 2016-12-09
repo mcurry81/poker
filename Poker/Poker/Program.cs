@@ -20,6 +20,8 @@ namespace Poker
             Card testCardA;
             Card testCardB;
 
+
+            ///Testing Deck functionality
             //test creation of deck
             Console.WriteLine("Testing build of deck...");
             Console.WriteLine("run newDeck()...");
@@ -64,8 +66,10 @@ namespace Poker
 
             //test getDeckCount()
             Console.WriteLine("Testing getDeckCount: ");
-            newDeck.getDeckCount();
-            Console.WriteLine();
+            Console.WriteLine(newDeck.getDeckCount());
+
+
+            ///
 
             Console.WriteLine("Press any key to contiue..");
             Console.ReadKey();
